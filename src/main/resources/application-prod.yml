@@ -20,7 +20,7 @@ spring:
       default_batch_fetch_size: 100
     open-in-view: false
 
-logging:
-  level:
-    '[com.example.kakao]': INFO
-    '[org.hibernate.type]': TRACE
+#logging:
+#  level:
+#    '[com.example.kakao]': INFO
+#    '[org.hibernate.type]': TRACE
