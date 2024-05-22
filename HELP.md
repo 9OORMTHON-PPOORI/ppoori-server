@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'dev.9oormthon.jejucart' is invalid and this project uses 'dev.oormthon.jejucart' instead.
+* The original package name 'dev.9oormthon.jejucart' is invalid and this project uses 'dev.goormthon.jejucart' instead.
 
 # Getting Started
 
