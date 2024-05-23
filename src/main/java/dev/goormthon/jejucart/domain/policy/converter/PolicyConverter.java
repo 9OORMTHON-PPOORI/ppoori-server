@@ -55,4 +55,11 @@ public class PolicyConverter {
                 .comments(commentStrings)
                 .build();
     }
+
+    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy) {
+        return PolicyResponse.RecommendPolicyDto.builder()
+                .name(policy.getName())
+                .title(policy.getTitle())
+                .build();
+    }
 }
