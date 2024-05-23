@@ -1,5 +1,6 @@
 package dev.goormthon.jejucart.domain.policy.dto;
 
+import dev.goormthon.jejucart.global.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ public class PolicyRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class RecommendDto {
-        private String category;  // 카테고리
+        private Category category;  // 카테고리
         private String target;  // 타겟
     }
 }
