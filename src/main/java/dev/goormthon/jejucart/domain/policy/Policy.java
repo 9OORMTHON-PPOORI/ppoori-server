@@ -36,22 +36,22 @@ public class Policy extends BaseTimeEntity {
     private int hateRate;  // 관심 없어요
     private int likeRate;  // 맘에 들어요
 
-    public int plusHateRate() {
+    public void plusHateRate() {
         this.hateRate += 1;
         // return this.hateRate;
     }
 
-    public int minusHateRate() {
+    public void minusHateRate() {
         this.hateRate -= 1;
         // return this.hateRate;
     }
 
-    public int plusLikeRate() {
+    public void plusLikeRate() {
         this.likeRate += 1;
         // return this.likeRate;
     }
 
-    public int minusLikeRate() {
+    public void minusLikeRate() {
         this.likeRate -= 1;
         // return this.likeRate;
     }
