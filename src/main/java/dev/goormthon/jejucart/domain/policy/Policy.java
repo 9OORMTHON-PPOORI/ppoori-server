@@ -25,34 +25,31 @@ public class Policy extends BaseTimeEntity {
     private String subject;  // 지원 대상
     private String detail;  // 지원 내용
     private String contact;  // 문의처
+    private String department;  // 부서
     private String target;  // 검색 타겟
 
     @Enumerated(EnumType.STRING)
     private Category category;  // 카테고리
 
-    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();
-
     private int hateRate;  // 관심 없어요
     private int likeRate;  // 맘에 들어요
 
+    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
     public void plusHateRate() {
         this.hateRate += 1;
-        // return this.hateRate;
     }
 
     public void minusHateRate() {
         this.hateRate -= 1;
-        // return this.hateRate;
     }
 
     public void plusLikeRate() {
         this.likeRate += 1;
-        // return this.likeRate;
     }
 
     public void minusLikeRate() {
         this.likeRate -= 1;
-        // return this.likeRate;
     }
 }

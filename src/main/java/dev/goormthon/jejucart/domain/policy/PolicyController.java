@@ -18,10 +18,10 @@ public class PolicyController {
     private final PolicyService policyService;
 
     // 추천 기능
-    @PostMapping("/api/v1/recommend")
-    public List<String> recommendPolicy(@RequestBody PolicyRequest.RecommendDto recommendDto) {
-        return policyService.recommendPolicy(recommendDto);
-    }
+//    @PostMapping("/api/v1/recommend")
+//    public List<String> recommendPolicy(@RequestBody PolicyRequest.RecommendDto recommendDto) {
+//        return policyService.recommendPolicy(recommendDto);
+//    }
 
     // 전체 정책 조회
     @GetMapping("/api/v1/policy/all")
