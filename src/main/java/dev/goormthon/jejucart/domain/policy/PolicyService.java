@@ -1,5 +1,7 @@
 package dev.goormthon.jejucart.domain.policy;
 
+import dev.goormthon.jejucart.domain.comment.Comment;
+import dev.goormthon.jejucart.domain.comment.CommentRepository;
 import dev.goormthon.jejucart.domain.policy.converter.PolicyConverter;
 import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +15,7 @@ import java.util.List;
 public class PolicyService {
 
     private final PolicyRepository policyRepository;
+    private final CommentRepository commentRepository;
 
 //    public List<PolicyResponse.RecommendPolicyDto> recommend() {
 //        // 1. 레포지토리에서 target 검색어로 검색
@@ -28,6 +31,34 @@ public class PolicyService {
     public PolicyResponse.PolicyDetailDto findPolicyById(Long id) {
         Policy policy = policyRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
-        return PolicyConverter.toPolicyDetailDto(policy);
+
+        List<Comment> comments = commentRepository.findByPolicy_Id(policy.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+
+        return PolicyConverter.toPolicyDetailDto(policy, comments);
+    }
+
+    public int hatePolicy(Long id, boolean status) {
+        Policy policy = policyRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+
+        if (!status)  // 아직 안 누른 버튼
+            policy.plusHateRate();
+        else
+            policy.minusHateRate();
+
+        return policy.getHateRate();
+    }
+
+    public int likePolicy(Long id, boolean status) {
+        Policy policy = policyRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+
+        if (!status)
+            policy.plusLikeRate();
+        else
+            policy.minusHateRate();
+
+        return policy.getLikeRate();
     }
 }

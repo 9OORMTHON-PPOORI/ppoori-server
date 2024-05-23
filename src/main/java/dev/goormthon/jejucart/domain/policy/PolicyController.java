@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static dev.goormthon.jejucart.global.status.SuccessStatus.POLICY_FIND_ALL_SUCCESS;
-import static dev.goormthon.jejucart.global.status.SuccessStatus.POLICY_FIND_SUCCESS;
+import static dev.goormthon.jejucart.global.status.SuccessStatus.*;
 
 @AllArgsConstructor
 @RestController
@@ -35,10 +34,16 @@ public class PolicyController {
         return BaseResponseDto.SuccessResponse(POLICY_FIND_SUCCESS, policyService.findPolicyById(id));
     }
 
-//    // 정책 관심 없어요
-//    @PatchMapping("/api/v1/policy/{id}/hate")
-//
-//    // 정책 맘에 들어요
-//    @PatchMapping("/api/v1/policy/{id}/like")
+    // 정책 관심 없어요
+    @PatchMapping("/api/v1/policy/{id}/hate")
+    public BaseResponseDto<?> hatePolicy(@PathVariable("id") Long id, boolean status) {
+        return BaseResponseDto.SuccessResponse(COMMENT_HATE_REQUEST_SUCCESS, policyService.hatePolicy(id, status));
+    }
+
+    // 정책 맘에 들어요
+    @PatchMapping("/api/v1/policy/{id}/like")
+    public BaseResponseDto<?> likePolicy(@PathVariable("id") Long id, boolean status) {
+        return BaseResponseDto.SuccessResponse(COMMENT_LIKE_REQUEST_SUCCESS, policyService.likePolicy(id, status));
+    }
 
 }

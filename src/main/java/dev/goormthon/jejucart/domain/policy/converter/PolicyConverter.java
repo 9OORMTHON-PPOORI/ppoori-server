@@ -1,5 +1,8 @@
 package dev.goormthon.jejucart.domain.policy.converter;
 
+import dev.goormthon.jejucart.domain.comment.Comment;
+import dev.goormthon.jejucart.domain.comment.converter.CommentConverter;
+import dev.goormthon.jejucart.domain.comment.dto.CommentResponse;
 import dev.goormthon.jejucart.domain.policy.Policy;
 import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 
@@ -29,10 +32,15 @@ public class PolicyConverter {
         return policiesDetailDtos;
     }
 
-    public static PolicyResponse.PolicyDetailDto toPolicyDetailDto(Policy policy) {
+    public static PolicyResponse.PolicyDetailDto toPolicyDetailDto(Policy policy, List<Comment> comments) {
 
         String[] split = policy.getDetail().split("/");
         List<String> details = new ArrayList<>(Arrays.asList(split));
+        List<CommentResponse.ShowDto> commentStrings = new ArrayList<>();
+
+        for (Comment comment : comments) {
+            commentStrings.add(CommentConverter.toShowDto(comment));
+        }
 
         return PolicyResponse.PolicyDetailDto.builder()
                 .id(policy.getId())
@@ -43,6 +51,7 @@ public class PolicyConverter {
                 .contact(policy.getContact())
                 .hateRate(policy.getHateRate())
                 .likeRate(policy.getLikeRate())
+                .comments(commentStrings)
                 .build();
     }
 }

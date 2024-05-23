@@ -1,5 +1,6 @@
 package dev.goormthon.jejucart.domain.policy.dto;
 
+import dev.goormthon.jejucart.domain.comment.dto.CommentResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class PolicyResponse {
         private String contact;  // 문의처
         private int hateRate;  // 관심 없어요
         private int likeRate;  // 맘에 들어요
+        private List<CommentResponse.ShowDto> comments;
     }
 
     // 정첵 전체 정보 반환 dto
