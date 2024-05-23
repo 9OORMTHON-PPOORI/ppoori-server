@@ -24,6 +24,7 @@ public class PolicyResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PolicyDetailDto {
+        private Long id;  // PK
         private String name;  // 정책명
         private String title;  // 제목
         private String subject;  // 지원 대상
@@ -38,6 +39,7 @@ public class PolicyResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PoliciesDetailDto {
+        private Long id;  // PK
         private String name;  // 정책명
         private String title;  // 제목
         private String category;  // 카테고리
