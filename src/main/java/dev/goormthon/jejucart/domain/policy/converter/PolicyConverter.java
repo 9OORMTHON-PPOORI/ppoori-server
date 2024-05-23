@@ -4,6 +4,7 @@ import dev.goormthon.jejucart.domain.policy.Policy;
 import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PolicyConverter {
@@ -28,11 +29,15 @@ public class PolicyConverter {
     }
 
     public static PolicyResponse.PolicyDetailDto toPolicyDetailDto(Policy policy) {
+
+        String[] split = policy.getDetail().split("/");
+        List<String> details = new ArrayList<>(Arrays.asList(split));
+
         return PolicyResponse.PolicyDetailDto.builder()
                 .name(policy.getName())
                 .title(policy.getTitle())
                 .subject(policy.getSubject())
-                .detail(policy.getDetail())
+                .detail(details)
                 .contact(policy.getContact())
                 .hateRate(policy.getHateRate())
                 .likeRate(policy.getLikeRate())

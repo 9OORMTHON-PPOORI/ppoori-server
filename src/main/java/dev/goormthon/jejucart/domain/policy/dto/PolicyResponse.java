@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 public class PolicyResponse {
 
     // 추천 정책 정보 반환 dto
@@ -25,7 +27,7 @@ public class PolicyResponse {
         private String name;  // 정책명
         private String title;  // 제목
         private String subject;  // 지원 대상
-        private String detail;  // 지원 내용
+        private List<String> detail;  // 지원 내용
         private String contact;  // 문의처
         private int hateRate;  // 관심 없어요
         private int likeRate;  // 맘에 들어요
