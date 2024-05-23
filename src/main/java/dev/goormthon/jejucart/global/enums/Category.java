@@ -2,10 +2,10 @@ package dev.goormthon.jejucart.global.enums;
 
 public enum Category {
 
-    ACTIVITY_SUPPORT("활동지원"),
-    COMPETENCY_DEVELOPMENT("역량개발"),
-    LIVING_SUPPORT("생활지원"),
-    CAREER_SUPPORT("진로지원");
+    ACTIVITY_SUPPORT("ACTIVITY_SUPPORT"),
+    COMPETENCY_DEVELOPMENT("COMPETENCY_DEVELOPMENT"),
+    LIVING_SUPPORT("LIVING_SUPPORT"),
+    CAREER_SUPPORT("CAREER_SUPPORT");
 
     private String value;
 
