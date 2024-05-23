@@ -15,6 +15,7 @@ public class PolicyConverter {
 
         for (Policy policy : policies) {
             PolicyResponse.PoliciesDetailDto policiesDetailDto = PolicyResponse.PoliciesDetailDto.builder()
+                    .id(policy.getId())
                     .name(policy.getName())
                     .title(policy.getTitle())
                     .category(policy.getCategory().getValue())
@@ -34,6 +35,7 @@ public class PolicyConverter {
         List<String> details = new ArrayList<>(Arrays.asList(split));
 
         return PolicyResponse.PolicyDetailDto.builder()
+                .id(policy.getId())
                 .name(policy.getName())
                 .title(policy.getTitle())
                 .subject(policy.getSubject())
