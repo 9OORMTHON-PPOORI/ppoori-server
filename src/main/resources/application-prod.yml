@@ -6,7 +6,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: ${DATABASE_URL}?allowPublicKeyRetrieval=true&useSSL=false
+    url: ${DATABASE_URL}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: root
