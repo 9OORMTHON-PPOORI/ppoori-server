@@ -12,7 +12,7 @@ public interface PolicyRepository extends JpaRepository<Policy, Long> {
             value =
                     "select * from policy " +
                             "where category = :category " +
-                            "and target like %:target% ; ",
+                            "and subject like %:subject% ; ",
             nativeQuery = true
-    )    List<Policy> findPolicies(@Param("target") String target, @Param("category") String category);
+    )    List<Policy> findPolicies(@Param("subject") String subject, @Param("category") String category);
 }
