@@ -8,6 +8,11 @@ import java.util.List;
 
 public interface PolicyRepository extends JpaRepository<Policy, Long> {
 
-    @Query(value = "select * from policy where target like \'%:word%\' and category = :category;", nativeQuery = true)
-    List<Policy> findPolicies(@Param("word") String word, @Param("category") String category);
+    @Query(
+            value =
+                    "select * from policy " +
+                            "where category = :category " +
+                            "and target like :target% ; ",
+            nativeQuery = true
+    )    List<Policy> findPolicies(@Param("target") String target, @Param("category") String category);
 }
