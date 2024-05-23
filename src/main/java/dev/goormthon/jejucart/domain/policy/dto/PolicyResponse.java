@@ -30,6 +30,7 @@ public class PolicyResponse {
         private String title;  // 제목
         private String subject;  // 지원 대상
         private List<String> detail;  // 지원 내용
+        private String department;  // 부서
         private String contact;  // 문의처
         private int hateRate;  // 관심 없어요
         private int likeRate;  // 맘에 들어요

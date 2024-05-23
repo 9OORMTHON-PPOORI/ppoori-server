@@ -48,6 +48,7 @@ public class PolicyConverter {
                 .title(policy.getTitle())
                 .subject(policy.getSubject())
                 .detail(details)
+                .department(policy.getDepartment())
                 .contact(policy.getContact())
                 .hateRate(policy.getHateRate())
                 .likeRate(policy.getLikeRate())
