@@ -7,6 +7,7 @@ import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class PolicyService {
         return PolicyConverter.toPolicyDetailDto(policy, comments);
     }
 
+    @Transactional
     public int hatePolicy(Long id, boolean status) {
         Policy policy = policyRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
@@ -50,6 +52,7 @@ public class PolicyService {
         return policy.getHateRate();
     }
 
+    @Transactional
     public int likePolicy(Long id, boolean status) {
         Policy policy = policyRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));

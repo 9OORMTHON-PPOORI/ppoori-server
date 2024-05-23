@@ -38,21 +38,21 @@ public class Policy extends BaseTimeEntity {
 
     public int plusHateRate() {
         this.hateRate += 1;
-        return this.hateRate;
+        // return this.hateRate;
     }
 
     public int minusHateRate() {
         this.hateRate -= 1;
-        return this.hateRate;
+        // return this.hateRate;
     }
 
     public int plusLikeRate() {
         this.likeRate += 1;
-        return this.likeRate;
+        // return this.likeRate;
     }
 
     public int minusLikeRate() {
         this.likeRate -= 1;
-        return this.likeRate;
+        // return this.likeRate;
     }
 }
