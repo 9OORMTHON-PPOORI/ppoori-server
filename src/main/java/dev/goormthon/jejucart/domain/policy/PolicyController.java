@@ -1,5 +1,6 @@
 package dev.goormthon.jejucart.domain.policy;
 
+import dev.goormthon.jejucart.domain.policy.dto.PolicyRequest;
 import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 import dev.goormthon.jejucart.global.common.BaseResponseDto;
 import lombok.AllArgsConstructor;
@@ -17,10 +18,10 @@ public class PolicyController {
     private final PolicyService policyService;
 
     // 추천 기능
-//    @PostMapping("/api/v1/recommend")
-//    public ResponseEntity<?> recommendPolicy() {
-//
-//    }
+    @PostMapping("/api/v1/recommend")
+    public List<String> recommendPolicy(@RequestBody PolicyRequest.RecommendDto recommendDto) {
+        return policyService.recommendPolicy(recommendDto);
+    }
 
     // 전체 정책 조회
     @GetMapping("/api/v1/policy/all")
@@ -45,5 +46,4 @@ public class PolicyController {
     public BaseResponseDto<?> likePolicy(@PathVariable("id") Long id, boolean status) {
         return BaseResponseDto.SuccessResponse(COMMENT_LIKE_REQUEST_SUCCESS, policyService.likePolicy(id, status));
     }
-
 }
