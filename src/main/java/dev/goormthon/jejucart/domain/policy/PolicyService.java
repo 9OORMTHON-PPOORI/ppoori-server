@@ -21,7 +21,7 @@ public class PolicyService {
     private final CommentRepository commentRepository;
 
     public List<PolicyResponse.RecommendPolicyDto> recommend(PolicyRequest.RecommendDto recommendDto) {
-        List<Policy> policies = policyRepository.findPolicies(recommendDto.getTarget(), recommendDto.getCategory());
+        List<Policy> policies = policyRepository.findPolicies(recommendDto.getTarget(), recommendDto.getCategory().getValue());
         List<PolicyResponse.RecommendPolicyDto> recommendPolicyDtos = new ArrayList<>();
         for (Policy policy : policies) {
             PolicyResponse.RecommendPolicyDto recommendPolicyDto = PolicyConverter.toRecommendPolicyDto(policy);
