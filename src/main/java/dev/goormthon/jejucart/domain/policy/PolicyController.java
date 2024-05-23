@@ -35,10 +35,10 @@ public class PolicyController {
         return BaseResponseDto.SuccessResponse(POLICY_FIND_SUCCESS, policyService.findPolicyById(id));
     }
 
-    // 정책 관심 없어요
-    // @PatchMapping("/api/v1/policy/{id}/hate")
-
-    // 정책 맘에 들어요
-    // @PatchMapping("/api/v1/policy/{id}/like")
+//    // 정책 관심 없어요
+//    @PatchMapping("/api/v1/policy/{id}/hate")
+//
+//    // 정책 맘에 들어요
+//    @PatchMapping("/api/v1/policy/{id}/like")
 
 }
