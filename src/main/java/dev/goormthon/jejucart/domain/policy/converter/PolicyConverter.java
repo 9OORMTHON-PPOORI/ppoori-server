@@ -6,9 +6,7 @@ import dev.goormthon.jejucart.domain.comment.dto.CommentResponse;
 import dev.goormthon.jejucart.domain.policy.Policy;
 import dev.goormthon.jejucart.domain.policy.dto.PolicyResponse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PolicyConverter {
 
@@ -28,6 +26,8 @@ public class PolicyConverter {
 
             policiesDetailDtos.add(policiesDetailDto);
         }
+
+        policiesDetailDtos.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
 
         return policiesDetailDtos;
     }
@@ -58,7 +58,8 @@ public class PolicyConverter {
 
     public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy) {
         return PolicyResponse.RecommendPolicyDto.builder()
-                .name(policy.getName())
+                .id(policy.getId())
+                .target(policy.getTarget())
                 .title(policy.getTitle())
                 .build();
     }
