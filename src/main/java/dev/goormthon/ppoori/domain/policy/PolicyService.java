@@ -5,6 +5,9 @@ import dev.goormthon.ppoori.domain.comment.CommentRepository;
 import dev.goormthon.ppoori.domain.policy.converter.PolicyConverter;
 import dev.goormthon.ppoori.domain.policy.dto.PolicyRequest;
 import dev.goormthon.ppoori.domain.policy.dto.PolicyResponse;
+import dev.goormthon.ppoori.domain.relativity.RelativityRepository;
+import dev.goormthon.ppoori.domain.relativity.RelativityRepositoryImpl;
+import dev.goormthon.ppoori.global.enums.Target;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,13 +21,34 @@ import java.util.List;
 public class PolicyService {
 
     private final PolicyRepository policyRepository;
+    private final RelativityRepository relativityRepository;
+    private final RelativityRepositoryImpl relativityRepositoryImpl;
     private final CommentRepository commentRepository;
 
     public List<PolicyResponse.RecommendPolicyDto> recommend(PolicyRequest.RecommendDto recommendDto) {
-        List<Policy> policies = policyRepository.findPolicies(recommendDto.getTarget(), recommendDto.getCategory().getValue());
+
+        String target = getColumnNameFromTarget(recommendDto.getTarget());
+        String category = "" + recommendDto.getCategory() + "";
+
+        System.out.println("target = " + target);
+        System.out.println("category = " + category);
+
+        // List<Long> policyIds = relativityRepository.findPolicyIdsByRelativity(category, target);
+        List<Long> policyIds = relativityRepositoryImpl.findPolicyIdsByRelativity(category, target);
+
         List<PolicyResponse.RecommendPolicyDto> recommendPolicyDtos = new ArrayList<>();
-        for (Policy policy : policies) {
-            PolicyResponse.RecommendPolicyDto recommendPolicyDto = PolicyConverter.toRecommendPolicyDto(policy);
+
+        int index = 0;
+        int policyLength = policyIds.size();
+
+        System.out.println("policyLength = " + policyLength);
+
+        for (Long policyId : policyIds) {
+            index = index + 1;
+            String indexString = index + "/" + policyLength;
+
+            Policy policy = policyRepository.findById(policyId).orElseThrow(EntityNotFoundException::new);
+            PolicyResponse.RecommendPolicyDto recommendPolicyDto = PolicyConverter.toRecommendPolicyDto(policy, indexString);
             recommendPolicyDtos.add(recommendPolicyDto);
         }
 
@@ -70,5 +94,16 @@ public class PolicyService {
             policy.minusLikeRate();
 
         return policy.getLikeRate();
+    }
+
+    private String getColumnNameFromTarget(Target target) {
+        return switch (target) {
+            case STUDENT -> "rate_student";
+            case JOBSEEKER -> "rate_jobseeker";
+            case WORKER -> "rate_worker";
+            case NEWLYWEDS -> "rate_newlyweds";
+            case INDUSTRY -> "rate_industry";
+            case ARTIST -> "rate_artist";
+        };
     }
 }

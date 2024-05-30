@@ -56,11 +56,13 @@ public class PolicyConverter {
                 .build();
     }
 
-    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy) {
+    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy, String index) {
         return PolicyResponse.RecommendPolicyDto.builder()
                 .id(policy.getId())
-                // .target(policy.getTarget())
+                .index(index)
+                .name(policy.getName())
                 .title(policy.getTitle())
+                .summary(policy.getSummary())
                 .build();
     }
 }

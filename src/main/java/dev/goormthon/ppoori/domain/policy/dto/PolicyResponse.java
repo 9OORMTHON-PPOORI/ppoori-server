@@ -16,8 +16,10 @@ public class PolicyResponse {
     @AllArgsConstructor
     public static class RecommendPolicyDto {
         private Long id;  // PK
-        private String target;  // 정책명
+        private String index;  // 인덱스
+        private String name;  // 정책명
         private String title;  // 제목
+        private String summary;  // AI 요약
     }
 
     // 정책 상세 정보 반환 dto

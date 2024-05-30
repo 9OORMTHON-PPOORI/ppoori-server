@@ -19,10 +19,10 @@ public class Relativity {
     @Enumerated(EnumType.STRING)
     private Category category;  // 카테고리
 
-    private float rateStudent;  // 대학생
-    private float rateJobseeker;  // 취준생
-    private float rateWorker;  // 재직자
-    private float rateNewlyweds;  // 신혼부부
-    private float rateIndustry;  // 농업 및 어업인
-    private float rateArtist;  // 예술가
+    private float rate_student;  // 대학생
+    private float rate_jobseeker;  // 취준생
+    private float rate_worker;  // 재직자
+    private float rate_newlyweds;  // 신혼부부
+    private float rate_industry;  // 농업 및 어업인
+    private float rate_artist;  // 예술가
 }

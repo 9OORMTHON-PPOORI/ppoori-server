@@ -27,7 +27,6 @@ public class Policy {
     private String summary;  // AI 요약
     private String department;  // 부서
     private String contact;  // 문의처
-    // private String target;  // 검색 타겟
 
     @Enumerated(EnumType.STRING)
     private Category category;  // 카테고리
