@@ -14,7 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @NoArgsConstructor @Getter
 @Entity
-public class Policy extends BaseTimeEntity {
+public class Policy {
 
     @Id @GeneratedValue(strategy = IDENTITY)
     @Column(name = "policy_id")
@@ -24,15 +24,19 @@ public class Policy extends BaseTimeEntity {
     private String title;  // 제목
     private String subject;  // 지원 대상
     private String detail;  // 지원 내용
-    private String contact;  // 문의처
+    private String summary;  // AI 요약
     private String department;  // 부서
-    private String target;  // 검색 타겟
+    private String contact;  // 문의처
+    // private String target;  // 검색 타겟
 
     @Enumerated(EnumType.STRING)
     private Category category;  // 카테고리
 
-    private int hateRate;  // 관심 없어요
-    private int likeRate;  // 맘에 들어요
+    @Column(columnDefinition = "integer default 0")
+    private int hateRate = 0;  // 관심 없어요
+
+    @Column(columnDefinition = "integer default 0")
+    private int likeRate = 0;  // 맘에 들어요
 
     @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();

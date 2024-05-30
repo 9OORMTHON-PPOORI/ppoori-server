@@ -59,7 +59,7 @@ public class PolicyConverter {
     public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy) {
         return PolicyResponse.RecommendPolicyDto.builder()
                 .id(policy.getId())
-                .target(policy.getTarget())
+                // .target(policy.getTarget())
                 .title(policy.getTitle())
                 .build();
     }
