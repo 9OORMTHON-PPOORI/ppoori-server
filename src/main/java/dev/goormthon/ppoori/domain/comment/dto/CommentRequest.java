@@ -11,6 +11,7 @@ public class CommentRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class WriteDto {
+        private Long id;
         private String content;
     }
 }

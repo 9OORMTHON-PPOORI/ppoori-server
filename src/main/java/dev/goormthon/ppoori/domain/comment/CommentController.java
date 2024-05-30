@@ -19,12 +19,11 @@ public class CommentController {
     /**
      * 댓글을 작성하는 컨트롤러입니다.
      * @param writeDto
-     * @param id
      * @return
      */
-    @PostMapping("/api/v1/policy/{id}/comment")
-    public BaseResponseDto<?> saveComment(@RequestBody CommentRequest.WriteDto writeDto, @PathVariable Long id) {
-        commentService.save(writeDto, id);
+    @PostMapping("/api/v1/policy/comment")
+    public BaseResponseDto<?> saveComment(@RequestBody CommentRequest.WriteDto writeDto) {
+        commentService.save(writeDto);
         return BaseResponseDto.SuccessResponse(COMMENT_SAVE_SUCCESS);
     }
 }

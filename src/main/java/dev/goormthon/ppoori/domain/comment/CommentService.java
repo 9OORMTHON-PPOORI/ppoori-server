@@ -15,8 +15,8 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PolicyRepository policyRepository;
 
-    public void save(CommentRequest.WriteDto writeDto, Long policyId) {
-        Policy policy = policyRepository.findById(policyId)
+    public void save(CommentRequest.WriteDto writeDto) {
+        Policy policy = policyRepository.findById(writeDto.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
         Comment comment = CommentConverter.toEntity(writeDto, policy);
         commentRepository.save(comment);
