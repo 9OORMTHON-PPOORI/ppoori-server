@@ -6,7 +6,6 @@ import dev.goormthon.ppoori.domain.policy.converter.PolicyConverter;
 import dev.goormthon.ppoori.domain.policy.dto.PolicyRequest;
 import dev.goormthon.ppoori.domain.policy.dto.PolicyResponse;
 import dev.goormthon.ppoori.domain.relativity.RelativityRepository;
-import dev.goormthon.ppoori.domain.relativity.RelativityRepositoryImpl;
 import dev.goormthon.ppoori.global.enums.Target;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,6 @@ public class PolicyService {
 
     private final PolicyRepository policyRepository;
     private final RelativityRepository relativityRepository;
-    private final RelativityRepositoryImpl relativityRepositoryImpl;
     private final CommentRepository commentRepository;
 
     public List<PolicyResponse.RecommendPolicyDto> recommend(PolicyRequest.RecommendDto recommendDto) {
@@ -34,7 +32,7 @@ public class PolicyService {
         System.out.println("category = " + category);
 
         // List<Long> policyIds = relativityRepository.findPolicyIdsByRelativity(category, target);
-        List<Long> policyIds = relativityRepositoryImpl.findPolicyIdsByRelativity(category, target);
+        List<Long> policyIds = relativityRepository.findPolicyIdsByRelativity(category, target);
 
         List<PolicyResponse.RecommendPolicyDto> recommendPolicyDtos = new ArrayList<>();
 

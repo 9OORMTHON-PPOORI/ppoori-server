@@ -1,24 +1,31 @@
 package dev.goormthon.ppoori.domain.relativity;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import dev.goormthon.ppoori.global.enums.Category;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface RelativityRepository extends JpaRepository<Relativity, Long> {
+@RequiredArgsConstructor
+@Repository
+public class RelativityRepository {
 
-    final static float MIN_RATE = 0.4f;
-    final static int MAX_LENGTH = 10;
+    private final JPAQueryFactory queryFactory;
 
-    @Query(
-        value =
-            "select policy_id from relativity " +
-            "where category = :category " +
-            "and :target >= " + MIN_RATE + " " +
-            "order by :target desc " +
-            "limit " + MAX_LENGTH + " "
-        , nativeQuery = true
-    )
-    List<Long> findPolicyIdsByRelativity(@Param("category") String category, @Param("target") String target);
+    public List<Long> findPolicyIdsByRelativity(String category, String target) {
+        QRelativity relativity = QRelativity.relativity;
+        NumberPath<Float> dynamicPath = Expressions.numberPath(Float.class, target);
+
+        return queryFactory
+                .select(relativity.policyId)
+                .from(relativity)
+                .where(relativity.category.eq(Category.valueOf(category))
+                        .and(dynamicPath.goe(0.4f)))
+                .orderBy(dynamicPath.desc())
+                .limit(10)
+                .fetch();
+    }
 }
