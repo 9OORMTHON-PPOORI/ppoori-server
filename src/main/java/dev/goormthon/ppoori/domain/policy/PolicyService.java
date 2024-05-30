@@ -53,6 +53,7 @@ public class PolicyService {
         return recommendPolicyDtos;
     }
 
+    @Transactional
     public List<PolicyResponse.PoliciesDetailDto> findAllPolicy() {
         List<Policy> policies = policyRepository.findAll();
         return PolicyConverter.toPoliciesDetailDtoList(policies);

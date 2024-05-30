@@ -10,26 +10,14 @@ import java.util.*;
 
 public class PolicyConverter {
 
-    public static List<PolicyResponse.PoliciesDetailDto> toPoliciesDetailDtoList(List<Policy> policies) {
-
-        List<PolicyResponse.PoliciesDetailDto> policiesDetailDtos = new ArrayList<>();
-
-        for (Policy policy : policies) {
-            PolicyResponse.PoliciesDetailDto policiesDetailDto = PolicyResponse.PoliciesDetailDto.builder()
-                    .id(policy.getId())
-                    .name(policy.getName())
-                    .title(policy.getTitle())
-                    .category(policy.getCategory().getValue())
-                    .hateRate(policy.getHateRate())
-                    .likeRate(policy.getLikeRate())
-                    .build();
-
-            policiesDetailDtos.add(policiesDetailDto);
-        }
-
-        policiesDetailDtos.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
-
-        return policiesDetailDtos;
+    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy, String index) {
+        return PolicyResponse.RecommendPolicyDto.builder()
+                .id(policy.getId())
+                .index(index)
+                .name(policy.getName())
+                .title(policy.getTitle())
+                .summary(policy.getSummary())
+                .build();
     }
 
     public static PolicyResponse.PolicyDetailDto toPolicyDetailDto(Policy policy, List<Comment> comments) {
@@ -50,19 +38,32 @@ public class PolicyConverter {
                 .detail(details)
                 .department(policy.getDepartment())
                 .contact(policy.getContact())
-                .hateRate(policy.getHateRate())
-                .likeRate(policy.getLikeRate())
+                .hate_count(policy.getHateRate())
+                .like_count(policy.getLikeRate())
                 .comments(commentStrings)
                 .build();
     }
 
-    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy, String index) {
-        return PolicyResponse.RecommendPolicyDto.builder()
-                .id(policy.getId())
-                .index(index)
-                .name(policy.getName())
-                .title(policy.getTitle())
-                .summary(policy.getSummary())
-                .build();
+    public static List<PolicyResponse.PoliciesDetailDto> toPoliciesDetailDtoList(List<Policy> policies) {
+
+        List<PolicyResponse.PoliciesDetailDto> policiesDetailDtos = new ArrayList<>();
+
+        for (Policy policy : policies) {
+            PolicyResponse.PoliciesDetailDto policiesDetailDto = PolicyResponse.PoliciesDetailDto.builder()
+                    .id(policy.getId())
+                    .name(policy.getName())
+                    .title(policy.getTitle())
+                    .category(policy.getCategory().getValue())
+                    .hate_count(policy.getHateRate())
+                    .like_count(policy.getLikeRate())
+                    .total_comment(policy.getComments().size())
+                    .build();
+
+            policiesDetailDtos.add(policiesDetailDto);
+        }
+
+        policiesDetailDtos.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+
+        return policiesDetailDtos;
     }
 }

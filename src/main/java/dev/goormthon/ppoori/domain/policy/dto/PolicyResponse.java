@@ -34,8 +34,8 @@ public class PolicyResponse {
         private List<String> detail;  // 지원 내용
         private String department;  // 부서
         private String contact;  // 문의처
-        private int hateRate;  // 관심 없어요
-        private int likeRate;  // 맘에 들어요
+        private int hate_count;  // 관심 없어요
+        private int like_count;  // 맘에 들어요
         private List<CommentResponse.ShowDto> comments;
     }
 
@@ -48,7 +48,8 @@ public class PolicyResponse {
         private String name;  // 정책명
         private String title;  // 제목
         private String category;  // 카테고리
-        private int hateRate;  // 관심 없어요
-        private int likeRate;  // 맘에 들어요
+        private int hate_count;  // 관심 없어요
+        private int like_count;  // 맘에 들어요
+        private int total_comment;  // 댓글 수
     }
 }
