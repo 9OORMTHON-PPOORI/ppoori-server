@@ -10,6 +10,7 @@ import java.util.List;
 
 import static dev.goormthon.ppoori.global.status.SuccessStatus.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 @RestController
 public class PolicyController {
