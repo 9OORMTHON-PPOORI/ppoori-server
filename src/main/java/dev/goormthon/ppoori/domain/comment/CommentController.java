@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import static dev.goormthon.ppoori.global.status.SuccessStatus.COMMENT_SAVE_SUCCESS;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 @RestController
 public class CommentController {
