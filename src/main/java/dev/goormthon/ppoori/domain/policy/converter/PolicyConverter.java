@@ -33,6 +33,7 @@ public class PolicyConverter {
         return PolicyResponse.PolicyDetailDto.builder()
                 .id(policy.getId())
                 .name(policy.getName())
+                .category(policy.getCategory().getValue())
                 .title(policy.getTitle())
                 .subject(policy.getSubject())
                 .detail(details)

@@ -30,6 +30,7 @@ public class PolicyResponse {
         private Long id;  // PK
         private String name;  // 정책명
         private String title;  // 제목
+        private String category;  // 카테고리
         private String subject;  // 지원 대상
         private List<String> detail;  // 지원 내용
         private String department;  // 부서
