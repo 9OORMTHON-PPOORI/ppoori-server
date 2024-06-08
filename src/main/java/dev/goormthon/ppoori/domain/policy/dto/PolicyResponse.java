@@ -16,7 +16,8 @@ public class PolicyResponse {
     @AllArgsConstructor
     public static class RecommendPolicyDto {
         private Long id;  // PK
-        private String index;  // 인덱스
+        private int curr_idx;  // 현재 인덱스
+        private int total_idx; // 전체 인덱스
         private String name;  // 정책명
         private String title;  // 제목
         private String summary;  // AI 요약

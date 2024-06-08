@@ -10,10 +10,11 @@ import java.util.*;
 
 public class PolicyConverter {
 
-    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy, String index) {
+    public static PolicyResponse.RecommendPolicyDto toRecommendPolicyDto(Policy policy, int currIdx, int totalIdx) {
         return PolicyResponse.RecommendPolicyDto.builder()
                 .id(policy.getId())
-                .index(index)
+                .curr_idx(currIdx)
+                .total_idx(totalIdx)
                 .name(policy.getName())
                 .title(policy.getTitle())
                 .summary(policy.getSummary())

@@ -43,10 +43,10 @@ public class PolicyService {
 
         for (Long policyId : policyIds) {
             index = index + 1;
-            String indexString = index + "/" + policyLength;
+            int currIdx = index;
 
             Policy policy = policyRepository.findById(policyId).orElseThrow(EntityNotFoundException::new);
-            PolicyResponse.RecommendPolicyDto recommendPolicyDto = PolicyConverter.toRecommendPolicyDto(policy, indexString);
+            PolicyResponse.RecommendPolicyDto recommendPolicyDto = PolicyConverter.toRecommendPolicyDto(policy, currIdx, policyLength);
             recommendPolicyDtos.add(recommendPolicyDto);
         }
 
