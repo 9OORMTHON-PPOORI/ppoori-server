@@ -64,7 +64,7 @@ public class PolicyConverter {
             policiesDetailDtos.add(policiesDetailDto);
         }
 
-        policiesDetailDtos.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+        policiesDetailDtos.sort((o1, o2) -> o2.getLike_count() - o1.getLike_count());
 
         return policiesDetailDtos;
     }
